@@ -8,6 +8,7 @@
   </head>
   <body>
     <script def src="src/song.js" charset="utf-8"></script>
+    <script defer src="src/audio-api-loader.js" charset="utf-8"></script>
     <script defer src="src/eventHandlers.js" charset="utf-8"></script>
     <script defer src="src/index.js" charset="utf-8"></script>
 
@@ -36,6 +37,10 @@
     </div>
 
   <div class="content-container">
+
+    <div class="master-control">
+      <input name="crossfade" type="range" min="0" max="1" step="0.01" value=".5">
+    </div>
 
   <div id="decks">
       <div class="audio-container" id="deck-1">
