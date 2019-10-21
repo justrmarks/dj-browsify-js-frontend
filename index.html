@@ -1,0 +1,50 @@
+
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>Dj Browsify</title>
+    <link rel="stylesheet" href="style.css" type="text/css" />
+  </head>
+  <body>
+    <script def src="src/song.js" charset="utf-8"></script>
+    <script defer src="src/eventHandlers.js" charset="utf-8"></script>
+    <script defer src="src/index.js" charset="utf-8"></script>
+
+
+  <h1> DJ Browsify</h1>
+
+  <button id="upload-btn"> Upload + </button>
+
+  <div class="hidden" id="modal">
+    <button id="hide-btn"> X </button>
+      <form id="upload-form">
+
+
+          <label for="name">Song name: </label>
+          <input name="name" type="text"/>
+          <label for="artist">artist:</label>
+          <input name="artist" type="text"/>
+          <label for="genre">genre:</label>
+          <input name="genre" type="text"/>
+          <input name="file" type="file" accept="audio/*"/>
+          <input type="submit" value="upload song"/>
+          <progress max="100" value="0"></progress>
+
+      </form>
+    </div>
+
+  <div class="audio-container" id="deck-1">
+
+  </div>
+
+  <div class="audio-container" id="deck-2">
+
+  </div>
+
+  <ul id="songs-list">
+
+  </ul>
+
+
+</body>
