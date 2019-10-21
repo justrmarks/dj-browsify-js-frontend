@@ -11,10 +11,11 @@
     <script defer src="src/eventHandlers.js" charset="utf-8"></script>
     <script defer src="src/index.js" charset="utf-8"></script>
 
+<div class="top-bar">
+    <button id="upload-btn"> Upload + </button>
+    <h1> DJ Browsify</h1>
+</div>
 
-  <h1> DJ Browsify</h1>
-
-  <button id="upload-btn"> Upload + </button>
 
   <div class="hidden" id="modal">
     <button id="hide-btn"> X </button>
@@ -34,17 +35,21 @@
       </form>
     </div>
 
-  <div class="audio-container" id="deck-1">
+  <div class="content-container">
 
+  <div id="decks">
+      <div class="audio-container" id="deck-1">
+        <audio controls src="">Your browser does not support HTML5 audio tags. Try on Chrome</audio>
+      </div>
+
+      <div class="audio-container" id="deck-2">
+        <audio controls src="">Your browser does not support HTML5 audio tags. Try on Chrome</audio>
+      </div>
   </div>
 
-  <div class="audio-container" id="deck-2">
+    <ul id="songs-list">
 
+    </ul>
   </div>
-
-  <ul id="songs-list">
-
-  </ul>
-
 
 </body>

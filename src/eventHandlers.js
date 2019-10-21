@@ -22,9 +22,11 @@ let progressBar = event.target.querySelector('progress')
   // AJAX request finished
   request.addEventListener('load', function(e) {
   	// request.response will hold the response from the server
-  	console.log(request.response);
+  	console.log(request.response)
     let songObj = new Song(request.response.data)
     songsList.appendChild(songObj.renderLi())
+    progressBar.value = 0
+    modal.classList.toggle('hidden')
   });
 
   // Upload progress on request.upload
@@ -38,10 +40,7 @@ let progressBar = event.target.querySelector('progress')
   // If server is sending a JSON response then set JSON response type
   request.responseType = 'json';
 
-  for (value of data.values()) {
-    console.log(value)
-  }
-  
+
   // Send POST request to the server side script
   request.open('post', SONGS_URL);
   request.send(data);
@@ -50,7 +49,19 @@ let progressBar = event.target.querySelector('progress')
 
 let toggleUploadForm = (event => {
   console.log("toggle")
-  let modal = document.getElementById('modal')
   modal.classList.toggle('hidden')
 
 })
+
+let loadDeck = (event) => {
+  if (event.target.id == 'deck-1-btn') {
+    let songLi = event.target.parentNode
+    let songPath = songLi.dataset.url
+    deck1.querySelector('audio').src = songPath
+  }
+  if (event.target.id == 'deck-2-btn') {
+    let songLi = event.target.parentNode
+    let songPath = songLi.dataset.url
+    deck2.querySelector('audio').src = songPath
+  }
+}

@@ -13,21 +13,21 @@ class Song {
 
   renderLi() {
     let li = document.createElement('li')
-    li.innerHtml = `
-    <p> ${this.name}</p>
+    li.innerHTML = `<p> ${this.name}</p>
     <p> artist - ${this.artist} </p>
-    <p> genre: ${this.genre}
+    <p> genre: ${this.genre} </p>
     <button id="deck-1-btn" > + D1 </button>
-    <button id="deck-2-btn" > + D2 </button>
-    `
+    <button id="deck-2-btn" > + D2 </button>`
+
     li.setAttribute('data-url', this.url)
     return li
   }
 
   static async getUserSongs(listEl) {
     let songsData = await fetch(USER_PATH)
-    let songsArr = await songsData.json()
-    songObjs = songsArr.map(songEl=> new Song(songEl))
+    console.log(songsData)
+    let songsJSON = await songsData.json()
+    let songObjs = songsJSON.data.map(songEl=> new Song(songEl))
     songObjs.forEach(songObj=> listEl.appendChild(songObj.renderLi()))
   }
 }

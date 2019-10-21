@@ -1,4 +1,35 @@
-#modal{
+/*********** Main Layout **********/
+
+.content-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+
+}
+
+.container * {
+
+
+}
+
+
+/********* Top bar **************/
+
+#upload-btn {
+  display: inline;
+}
+
+h1 {
+  display: inline;
+}
+
+.top-bar {
+  display: flex;
+  align-items: center
+}
+
+/********** MODAL & FORM   ***************/
+#modal {
   height: 100%;
   width: 100%;
   background-color: rgba(0, 0, 0, 0.5);
@@ -10,7 +41,7 @@
 
 }
 
-form {
+#upload-form {
   display: block;
   align-items: center;
   justify-content: center;
@@ -31,4 +62,10 @@ form {
 
 .hidden#modal {
   display: none;
+}
+
+/****************** Songs list******************/
+
+#songs-list {
+  list-style: none;
 }
