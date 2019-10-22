@@ -25,6 +25,11 @@ Song.getUserSongs(songsList)
 let deck1 = new Deck(document.getElementById('deck-1'))
 let deck2 = new Deck(document.getElementById('deck-2'))
 
+// master controls
+
+let crossfade = document.querySelector("#crossfade")
+
+crossfade.addEventListener('change', event=> Deck.crossfade(deck1, deck2, event.target.value))
 
 songsList.addEventListener('click', loadDeck)
 

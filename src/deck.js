@@ -18,6 +18,8 @@ class Deck {
     this.buffer = undefined
     this.sampleNode = audioCtx.createBufferSource()
     this.render()
+    this.gainNode = audioCtx.createGain()
+    this.gainNode.connect(audioCtx.destination)
   }
 
   async load(url) {
@@ -33,15 +35,14 @@ class Deck {
     this.enable()
       }
 
-
+  setGain(value) {
+    this.gainNode.gain.value = value
+  }
 
   resetSample() {
     this.sampleNode = audioCtx.createBufferSource()
-    console.log(this.sampleNode)
-    console.log(this.buffer)
     this.sampleNode.buffer = this.buffer
-    this.sampleNode.connect(audioCtx.destination)
-
+    this.sampleNode.connect(this.gainNode)
   }
 
 
@@ -54,9 +55,6 @@ class Deck {
       this.domEl.querySelector('.play').textContent = 'play'
     }
     else {
-      console.log(this)
-      console.log(this.sampleNode)
-      console.log(this.buffer)
       this.sampleNode.start(0, this.currentTime)
       this.playing = true
       this.domEl.querySelector('.play').textContent = 'pause'
@@ -87,6 +85,15 @@ class Deck {
     this.domEl.querySelector('.play').addEventListener('click', deck.togglePlay.bind(this))
   }
 
-
+static crossfade(deck1, deck2, input) {
+  let d1Gain = Math.cos(input * 0.5 * Math.PI)
+  let d2Gain = Math.cos((1-input) * 0.5 * Math.PI)
+  deck1.setGain(d1Gain)
+  console.log(deck1)
+  console.log(deck1.gainNode)
+  deck2.setGain(d2Gain)
+  console.log(deck2)
+  console.log(deck2.gainNode)
+}
 
 }
