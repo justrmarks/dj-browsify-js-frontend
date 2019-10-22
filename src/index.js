@@ -1,5 +1,19 @@
 const SONGS_URL = 'http://localhost:3001/songs'
 
+// top bar
+
+let resumeButton = document.querySelector('#susresButton')
+resumeButton.addEventListener('click', function() {
+    if(audioCtx.state === 'running') {
+      audioCtx.suspend().then(function() {
+        susresButton.textContent = 'Resume context';
+      });
+    } else if(audioCtx.state === 'suspended') {
+      audioCtx.resume().then(function() {
+        susresButton.textContent = 'Suspend context';
+      });  
+    }
+  } )
 
 // song selector
 
@@ -9,8 +23,9 @@ Song.getUserSongs(songsList)
 //decks
 let deck1 = document.getElementById('deck-1')
 let deck2 = document.getElementById('deck-2')
-deck1.querySelector('audio').addEventListener('canplay', enableDeck)
-deck2.querySelector('audio').addEventListener('canplay', enableDeck)
+deck1.querySelector('button').addEventListener('click', (event) => togglePlay(deck1Node, event.target))
+deck2.querySelector('button').addEventListener('click', (event) => togglePlay(deck2Node, event.target))
+
 
 songsList.addEventListener('click', loadDeck)
 

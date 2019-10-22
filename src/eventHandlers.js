@@ -53,15 +53,4 @@ let toggleUploadForm = (event => {
 
 })
 
-let loadDeck = (event) => {
-  if (event.target.id == 'deck-1-btn') {
-    let songLi = event.target.parentNode
-    let songPath = songLi.dataset.url
-    deck1.querySelector('audio').src = songPath
-  }
-  if (event.target.id == 'deck-2-btn') {
-    let songLi = event.target.parentNode
-    let songPath = songLi.dataset.url
-    deck2.querySelector('audio').src = songPath
-  }
-}
+
