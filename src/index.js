@@ -11,7 +11,7 @@ resumeButton.addEventListener('click', function() {
     } else if(audioCtx.state === 'suspended') {
       audioCtx.resume().then(function() {
         susresButton.textContent = 'Suspend context';
-      });  
+      });
     }
   } )
 
@@ -21,10 +21,9 @@ let songsList = document.getElementById('songs-list')
 Song.getUserSongs(songsList)
 
 //decks
-let deck1 = document.getElementById('deck-1')
-let deck2 = document.getElementById('deck-2')
-deck1.querySelector('button').addEventListener('click', (event) => togglePlay(deck1Node, event.target))
-deck2.querySelector('button').addEventListener('click', (event) => togglePlay(deck2Node, event.target))
+
+let deck1 = new Deck(document.getElementById('deck-1'))
+let deck2 = new Deck(document.getElementById('deck-2'))
 
 
 songsList.addEventListener('click', loadDeck)

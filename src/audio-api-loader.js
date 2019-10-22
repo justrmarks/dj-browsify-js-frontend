@@ -10,17 +10,14 @@ let loadDeck = (event) => {
     if (event.target.id == 'deck-1-btn') {
         let songLi = event.target.parentNode
         let songPath = songLi.dataset.url
-        //enable deck method
-        setDeckBuffer(songPath, deck1Node)
-        deck1Node.connect(audioCtx.destination)
-        enableDeck(deck1)
+        deck1.load(songPath)
+        deck1.enable()
     }
     if (event.target.id == 'deck-2-btn') {
-        let songLi = event.target.parentNode
-        let songPath = songLi.dataset.url
-        setDeckBuffer(songPath, deck2Node)
-        deck2Node.connect(audioCtx.destination)
-        enableDeck(deck2)
+      let songLi = event.target.parentNode
+      let songPath = songLi.dataset.url
+      deck2.load(songPath)
+      deck2.enable()
     }
 }
 

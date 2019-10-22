@@ -63,9 +63,34 @@ h1 {
 .hidden#modal {
   display: none;
 }
+/**************** Decks ****************/
+
+.audio-container {
+  height: 40vh;
+  width: 100%;
+}
+
+/*************** Master Controls *************/
+
+#master-controls {
+  height: 80vh
+}
+
+#crossfade {
+  transform-origin: 10vh 10vh;
+  transform: rotate(-90deg);
+}
+
+
 
 /****************** Songs list******************/
 
 #songs-list {
   list-style: none;
+  overflow: scroll;
+  height: 80vh;
+  border: 2px solid black;
+}
+#songs-list li {
+  border: 1px solid gray;
 }
