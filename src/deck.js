@@ -71,6 +71,11 @@ class Deck {
 
     this.domEl.innerHTML = `
       <button class="play" disabled>play</button>
+
+      <div class='playback'>
+        <input type="range" min="0" max="10" value="1"step=".05">
+        <button> + </button> <button> - </button>
+      </div>
     `
 
     let deck = this
@@ -83,6 +88,16 @@ class Deck {
   addEventListeners() {
     let deck = this
     this.domEl.querySelector('.play').addEventListener('click', deck.togglePlay.bind(this))
+
+    let playbackSlider = deck.domEl.querySelector(".playback input")
+    playbackSlider.addEventListener("change", event => deck.updatePlayback(event.target.value))
+
+  }
+
+  updatePlayback(value) {
+    console.log(this)
+    console.log(value)
+    this.sampleNode.playbackRate.value = value
   }
 
 static crossfade(deck1, deck2, input) {
