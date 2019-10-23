@@ -1,14 +1,18 @@
 /*********** Main Layout **********/
 
+body {
+  margin: 0;
+}
+
 .content-container {
   display: flex;
   flex-direction: row;
-  justify-content: space-around;
-
+  justify-content: space-between;
+  border: 2px solid grey;
+  height: 80vh;
 }
 
 .container * {
-
 
 }
 
@@ -21,12 +25,23 @@
 
 h1 {
   display: inline;
+  font-family: 'Monoton', cursive;
+  font-weight: lighter;
+  font-size: 3em;
 }
 
 .top-bar {
   display: flex;
-  align-items: center
+  align-items: center;
+  border: 3px solid grey;
+  justify-content: center;
 }
+
+/*
+.far {
+  color: blue;
+}
+*/
 
 /********** MODAL & FORM   ***************/
 #modal {
@@ -66,14 +81,38 @@ h1 {
 /**************** Decks ****************/
 
 .audio-container {
-  height: 40vh;
-  width: 100%;
+  height: 50%;
+  border: 2px solid grey;
+  padding: 0px;
+  position: relative;
 }
+
+#decks {
+  width: 60%;
+  display: flex;
+  flex-direction: column;
+}
+
+.controls > * {
+  margin: 10px;
+}
+
+.waveform {
+  background-color: black;
+  height: 35%;
+  width: 100%;
+  position: absolute;
+  bottom: 0;
+}
+
+
 
 /*************** Master Controls *************/
 
 #master-controls {
-  height: 80vh
+  width: 25%;
+  padding: 2px;
+  border: 2px solid grey;
 }
 
 #crossfade {
@@ -88,13 +127,53 @@ h1 {
 #songs-list {
   list-style: none;
   overflow: scroll;
-  height: 80vh;
-  border: 2px solid black;
+  border: 2px solid grey;
+  padding: 0;
+  margin: 0;
+  flex-grow: 2;
+  width: 25%;
 }
 #songs-list li {
+  display: flex;
+  justify-content: space-between;
   border: 1px solid gray;
+  padding-left: 5px;
+  font-family: 'Roboto Mono', monospace;
 }
 
+.load-buttons {
+  width: 40%;
+}
+
+.load-button {
+  display: flex;
+  text-align: center;
+  align-items: center;
+  font-family: 'Audiowide', cursive;
+  font-size: 2.8rem;
+  height: 50%;
+}
+.load-button > p {
+  margin: 0;
+  padding: 0;
+  pointer-events: none;
+}
+
+.deck-1-btn {
+   background-color: #EB17EB;
+}
+
+.deck-2-btn {
+  background-color: #FFFF00;
+}
 
 
 /*************** Vendor CSS *****************/
+
+/* fonts
+
+font-family: 'Monoton', cursive;
+font-family: 'Audiowide', cursive;
+font-family: 'Roboto Mono', monospace;
+
+*/

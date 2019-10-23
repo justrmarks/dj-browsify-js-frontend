@@ -83,13 +83,17 @@ class Deck {
   render() {
 
     this.domEl.innerHTML = `
-      <button class="play" disabled>play</button>
+    <div class='controls'>
+        <button class="play" disabled>play</button>
 
-      <div class='playback'>
-        <p> 0.0 </p>
-        <input type="range" min="0" max="20" value="10"step=".05">
-        <button> + </button> <button> - </button>
-      </div>
+        <div class='playback'>
+          <p> 0.0 </p>
+          <input type="range" min="0" max="20" value="10"step=".05">
+          <button> + </button> <button> - </button>
+        </div>
+    </div>
+    <div class='waveform'></div>
+
     `
 
     let deck = this
