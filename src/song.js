@@ -13,11 +13,18 @@ class Song {
 
   renderLi() {
     let li = document.createElement('li')
-    li.innerHTML = `<p> ${this.name}</p>
-    <p> artist - ${this.artist} </p>
-    <p> genre: ${this.genre} </p>
-    <button id="deck-1-btn" > + D1 </button>
-    <button id="deck-2-btn" > + D2 </button>`
+    li.innerHTML = `
+    <div class='song-info'>
+      <p> ${this.name}</p>
+      <p> artist - ${this.artist} </p>
+      <p> genre: ${this.genre} </p>
+    </div>
+
+    <div class='load-buttons'>
+      <div class="deck-1-btn load-button" > <p> + D1 </p> </div>
+      <div class="deck-2-btn load-button" > <p> + D2 </p> </div>
+    </div>
+    `
 
     li.setAttribute('data-url', this.url)
     return li
