@@ -58,12 +58,12 @@ let loadDeck = (event) => {
         let songLi = event.target.parentNode
         let songPath = songLi.dataset.url
         deck1.load(songPath)
-        deck1.enable()
+        // deck1.enable()
     }
     if (event.target.id == 'deck-2-btn') {
       let songLi = event.target.parentNode
       let songPath = songLi.dataset.url
       deck2.load(songPath)
-      deck2.enable()
+      // deck2.enable()
     }
 }

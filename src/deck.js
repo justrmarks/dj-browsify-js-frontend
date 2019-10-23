@@ -24,7 +24,7 @@ class Deck {
 
   async load(url) {
     let deck = this
-    console.log(deck)
+    this.disable()
     let response = await fetch(url)
     let arrayBuffer = await response.arrayBuffer()
     let buffer = await audioCtx.decodeAudioData(arrayBuffer)
@@ -64,7 +64,20 @@ class Deck {
   enable() {
       let deckPlay = this.domEl.querySelector('.play')
       if (!!this.buffer) {
-      deckPlay.removeAttribute('disabled') }
+      deckPlay.removeAttribute('disabled')
+      console.log('deck enabled')
+      }
+  }
+
+  disable() {
+    if (this.playing) {
+    this.sampleNode.stop()
+    let deckPlay = this.domEl.querySelector('.play')
+    deckPlay.textContent = "play"
+    deckPlay.setAttribute('disabled',true)
+    this.playing = false
+    console.log('deck disabled')
+    }
   }
 
   render() {
@@ -73,7 +86,8 @@ class Deck {
       <button class="play" disabled>play</button>
 
       <div class='playback'>
-        <input type="range" min="0" max="10" value="1"step=".05">
+        <p> 0.0 </p>
+        <input type="range" min="0" max="20" value="10"step=".05">
         <button> + </button> <button> - </button>
       </div>
     `
@@ -90,14 +104,18 @@ class Deck {
     this.domEl.querySelector('.play').addEventListener('click', deck.togglePlay.bind(this))
 
     let playbackSlider = deck.domEl.querySelector(".playback input")
-    playbackSlider.addEventListener("change", event => deck.updatePlayback(event.target.value))
+    playbackSlider.addEventListener("input", event => deck.updatePlayback(event.target.value))
 
   }
 
-  updatePlayback(value) {
-    console.log(this)
-    console.log(value)
+  updatePlayback(factor) {
+    let input = factor - 10
+    let value = (1.116123 ** input).toFixed(2)
+    this.domEl.querySelector(".playback p").innerHTML = `${Math.floor(value*100)}%`
+    //magic number is constant to assure smooth playback transition
     this.sampleNode.playbackRate.value = value
+
+
   }
 
 static crossfade(deck1, deck2, input) {
