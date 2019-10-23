@@ -89,7 +89,8 @@ class Deck {
         <div class='playback'>
           <p> 100% </p>
           <input type="range" min="0" max="20" value="10"step=".05">
-          <button> + </button> <button> - </button>
+          <button> + </button> 
+          <button> - </button>
         </div>
     </div>
     <div class='waveform'></div>
@@ -109,7 +110,6 @@ class Deck {
 
     let playbackSlider = deck.domEl.querySelector(".playback input")
     playbackSlider.addEventListener("input", event => deck.updatePlayback(event.target.value))
-
   }
 
   updatePlayback(factor) {
@@ -118,8 +118,6 @@ class Deck {
     this.domEl.querySelector(".playback p").innerHTML = `${Math.floor(value*100)}%`
     //magic number is constant to assure smooth playback transition
     this.sampleNode.playbackRate.value = value
-
-
   }
 
 static crossfade(deck1, deck2, input) {
