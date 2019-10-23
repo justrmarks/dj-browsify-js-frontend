@@ -64,7 +64,10 @@ class Deck {
   enable() {
       let deckPlay = this.domEl.querySelector('.play')
       if (!!this.buffer) {
-      deckPlay.removeAttribute('disabled') }
+      deckPlay.removeAttribute('disabled')
+      this.playing = false
+      deckPlay.textContent = 'play'
+      }
   }
 
   render() {
@@ -90,13 +93,11 @@ class Deck {
     this.domEl.querySelector('.play').addEventListener('click', deck.togglePlay.bind(this))
 
     let playbackSlider = deck.domEl.querySelector(".playback input")
-    playbackSlider.addEventListener("change", event => deck.updatePlayback(event.target.value))
+    playbackSlider.addEventListener("input", event => deck.updatePlayback(event.target.value))
 
   }
 
   updatePlayback(value) {
-    console.log(this)
-    console.log(value)
     this.sampleNode.playbackRate.value = value
   }
 

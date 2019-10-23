@@ -34,7 +34,7 @@ let deck2 = new Deck(document.getElementById('deck-2'))
 
 let crossfade = document.querySelector("#crossfade")
 
-crossfade.addEventListener('change', event=> Deck.crossfade(deck1, deck2, event.target.value))
+crossfade.addEventListener('input', event=> Deck.crossfade(deck1, deck2, event.target.value))
 
 
 
