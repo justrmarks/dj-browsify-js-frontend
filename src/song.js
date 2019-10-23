@@ -16,8 +16,8 @@ class Song {
     li.innerHTML = `
     <div class='song-info'>
       <p> ${this.name}</p>
-      <p> artist - ${this.artist} </p>
-      <p> genre: ${this.genre} </p>
+      <p> Artist - ${this.artist} </p>
+      <p> Genre: ${this.genre} </p>
     </div>
 
     <div class='load-buttons'>

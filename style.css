@@ -35,13 +35,18 @@ h1 {
   align-items: center;
   border: 3px solid grey;
   justify-content: center;
+  background-color: #00ECFF;
 }
 
-/*
+
 .far {
-  color: blue;
+  color: #EB17EB;
 }
-*/
+
+.fas {
+  color: red;
+}
+
 
 /********** MODAL & FORM   ***************/
 #modal {
@@ -53,7 +58,7 @@ h1 {
   position: fixed;
   left: 0;
   top: 0;
-
+  font-family: 'Roboto Mono', monospace;
 }
 
 #upload-form {
@@ -62,8 +67,15 @@ h1 {
   justify-content: center;
   margin: auto;
   background-color: #ffffff;
-  padding: .8em;
+  padding: 1.5em;
   border-radius: 7%;
+  width: 50%;
+}
+
+#modal input[type='text'] {
+ padding: 2%;
+ width: 70%;
+ border-radius: 5px;
 }
 
 #hide_button {
@@ -85,6 +97,8 @@ h1 {
   border: 2px solid grey;
   padding: 0px;
   position: relative;
+  background-color: #36454f;
+  color: white;
 }
 
 #decks {
@@ -105,6 +119,12 @@ h1 {
   bottom: 0;
 }
 
+.playback {
+  display: flex;
+  justify-content: flex-end;
+  
+}
+
 
 
 /*************** Master Controls *************/
@@ -113,6 +133,8 @@ h1 {
   width: 25%;
   padding: 2px;
   border: 2px solid grey;
+  background-color: whitesmoke;
+  font-family: 'Roboto Mono', monospace;
 }
 
 #crossfade {
@@ -139,6 +161,13 @@ h1 {
   border: 1px solid gray;
   padding-left: 5px;
   font-family: 'Roboto Mono', monospace;
+  background-color: whitesmoke;
+}
+
+.song-info {
+  width: 60%;
+  word-wrap: break-word;
+
 }
 
 .load-buttons {
