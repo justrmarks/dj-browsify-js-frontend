@@ -24,7 +24,7 @@ class Deck {
 
   async load(url) {
     let deck = this
-    console.log(deck)
+    this.disable()
     let response = await fetch(url)
     let arrayBuffer = await response.arrayBuffer()
     let buffer = await audioCtx.decodeAudioData(arrayBuffer)
@@ -65,9 +65,19 @@ class Deck {
       let deckPlay = this.domEl.querySelector('.play')
       if (!!this.buffer) {
       deckPlay.removeAttribute('disabled')
-      this.playing = false
-      deckPlay.textContent = 'play'
+      console.log('deck enabled')
       }
+  }
+
+  disable() {
+    if (this.playing) {
+    this.sampleNode.stop()
+    let deckPlay = this.domEl.querySelector('.play')
+    deckPlay.textContent = "play"
+    deckPlay.setAttribute('disabled',true)
+    this.playing = false
+    console.log('deck disabled')
+    }
   }
 
   render() {
