@@ -86,7 +86,8 @@ class Deck {
       <button class="play" disabled>play</button>
 
       <div class='playback'>
-        <input type="range" min="0" max="10" value="1"step=".05">
+        <p> 0.0 </p>
+        <input type="range" min="0" max="20" value="10"step=".05">
         <button> + </button> <button> - </button>
       </div>
     `
@@ -107,8 +108,14 @@ class Deck {
 
   }
 
-  updatePlayback(value) {
+  updatePlayback(factor) {
+    let input = factor - 10
+    let value = (1.116123 ** input).toFixed(2)
+    this.domEl.querySelector(".playback p").innerHTML = `${Math.floor(value*100)}%`
+    //magic number is constant to assure smooth playback transition
     this.sampleNode.playbackRate.value = value
+
+
   }
 
 static crossfade(deck1, deck2, input) {
