@@ -84,13 +84,16 @@ class Deck {
 
     this.domEl.innerHTML = `
     <div class='controls'>
+        <div class='info-bar'>
+        song name - song artist - song genre
+        </div>
         <button class="play" disabled>play</button>
 
         <div class='playback'>
           <p> 0.0 </p>
           <input type="range" min="0" max="20" value="10"step=".05">
-          <button> + </button> 
-          <button> - </button>
+          <button class='playback-btn'> + </button> 
+          <button class='playback-btn'> - </button>
         </div>
     </div>
     <div class='waveform'></div>
