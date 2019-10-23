@@ -13,26 +13,20 @@ class Deck {
 
   constructor(div) {
     this.domEl = div
-    this.currentTime = 0
-    this.playing = false
-    this.buffer = undefined
-    this.sampleNode = audioCtx.createBufferSource()
     this.render()
-    this.gainNode = audioCtx.createGain()
-    this.gainNode.connect(audioCtx.destination)
+    this.wavesurfer = WaveSurfer.create({
+      container: this.domEl.querySelector('.waveform')
+    })
+    this.addEventListeners()
+    this.gainNode = this.wavesurfer.backend.ac.createGain()
+    this.wavesurfer.backend.setFilter(this.gainNode);
+
   }
 
   async load(url) {
     let deck = this
     this.disable()
-    let response = await fetch(url)
-    let arrayBuffer = await response.arrayBuffer()
-    let buffer = await audioCtx.decodeAudioData(arrayBuffer)
-    console.log(this)
-    this.buffer = buffer
-    this.resetSample()
-    this.currentTime = 0
-    this.enable()
+    this.wavesurfer.load(url)
       }
 
   setGain(value) {
@@ -47,37 +41,20 @@ class Deck {
 
 
   togglePlay() {
-    if (this.playing) {
-      this.currentTime = audioCtx.currentTime
-      this.sampleNode.stop()
-      this.playing = false
-      this.resetSample()
-      this.domEl.querySelector('.play').textContent = 'play'
-    }
-    else {
-      this.sampleNode.start(0, this.currentTime)
-      this.playing = true
-      this.domEl.querySelector('.play').textContent = 'pause'
-    }
+    this.wavesurfer.playPause()
   }
 
   enable() {
       let deckPlay = this.domEl.querySelector('.play')
-      if (!!this.buffer) {
       deckPlay.removeAttribute('disabled')
       console.log('deck enabled')
-      }
   }
 
   disable() {
-    if (this.playing) {
-    this.sampleNode.stop()
     let deckPlay = this.domEl.querySelector('.play')
     deckPlay.textContent = "play"
     deckPlay.setAttribute('disabled',true)
-    this.playing = false
     console.log('deck disabled')
-    }
   }
 
   render() {
@@ -89,7 +66,7 @@ class Deck {
         <div class='playback'>
           <p> 100% </p>
           <input type="range" min="0" max="20" value="10"step=".05">
-          <button> + </button> 
+          <button> + </button>
           <button> - </button>
         </div>
     </div>
@@ -98,15 +75,14 @@ class Deck {
     `
 
     let deck = this
-    this.addEventListeners()
-
-
     return this.domEl
   }
 
   addEventListeners() {
     let deck = this
     this.domEl.querySelector('.play').addEventListener('click', deck.togglePlay.bind(this))
+
+    this.wavesurfer.on('ready', this.enable.bind(this))
 
     let playbackSlider = deck.domEl.querySelector(".playback input")
     playbackSlider.addEventListener("input", event => deck.updatePlayback(event.target.value))
