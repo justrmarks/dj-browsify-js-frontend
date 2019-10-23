@@ -86,7 +86,7 @@ class Deck {
       <button class="play" disabled>play</button>
 
       <div class='playback'>
-        <p> 0.0 </p>
+        <p> 100% </p>
         <input type="range" min="0" max="20" value="10"step=".05">
         <button> + </button> <button> - </button>
       </div>
@@ -119,8 +119,8 @@ class Deck {
   }
 
 static crossfade(deck1, deck2, input) {
-  let d1Gain = Math.cos(input * 0.5 * Math.PI)
-  let d2Gain = Math.cos((1-input) * 0.5 * Math.PI)
+  let d1Gain = Math.cos((1-input) * 0.5 * Math.PI)
+  let d2Gain = Math.cos(input * 0.5 * Math.PI)
   deck1.setGain(d1Gain)
   console.log(deck1)
   console.log(deck1.gainNode)
