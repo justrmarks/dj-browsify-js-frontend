@@ -3,18 +3,7 @@ const audioCtx = new AudioContext()
 
 // top bar
 
-let resumeButton = document.querySelector('#susresButton')
-resumeButton.addEventListener('click', function() {
-    if(audioCtx.state === 'running') {
-      audioCtx.suspend().then(function() {
-        susresButton.textContent = 'Resume context';
-      });
-    } else if(audioCtx.state === 'suspended') {
-      audioCtx.resume().then(function() {
-        susresButton.textContent = 'Suspend context';
-      });
-    }
-  } )
+
 
 // song selector
 

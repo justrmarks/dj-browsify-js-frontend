@@ -3,12 +3,12 @@
 .content-container {
   display: flex;
   flex-direction: row;
-  justify-content: space-around;
-
+  justify-content: space-between;
+  border: 2px solid grey;
+  height: 80vh;
 }
 
 .container * {
-
 
 }
 
@@ -25,7 +25,8 @@ h1 {
 
 .top-bar {
   display: flex;
-  align-items: center
+  align-items: center;
+  border: 3px solid grey;
 }
 
 /********** MODAL & FORM   ***************/
@@ -66,14 +67,24 @@ h1 {
 /**************** Decks ****************/
 
 .audio-container {
-  height: 40vh;
-  width: 100%;
+  height: 50%;
+  border: 2px solid grey;
+  padding: 0px;
 }
+
+#decks {
+  width: 60%;
+  display: flex;
+  flex-direction: column;
+}
+
 
 /*************** Master Controls *************/
 
 #master-controls {
-  height: 80vh
+  width: 25%;
+  padding: 2px;
+  border: 2px solid grey;
 }
 
 #crossfade {
@@ -88,11 +99,15 @@ h1 {
 #songs-list {
   list-style: none;
   overflow: scroll;
-  height: 80vh;
-  border: 2px solid black;
+  border: 2px solid grey;
+  padding: 0;
+  margin: 0;
+  flex-grow: 2;
+  width: 25%;
 }
 #songs-list li {
   border: 1px solid gray;
+  padding: 5px;
 }
 
 
