@@ -8,6 +8,7 @@
   </head>
   <body>
     <script def src="src/song.js" charset="utf-8"></script>
+    <script def src="src/deck.js" charset="utf-8"></script>
     <script defer src="src/audio-api-loader.js" charset="utf-8"></script>
     <script defer src="src/eventHandlers.js" charset="utf-8"></script>
     <script defer src="src/index.js" charset="utf-8"></script>
@@ -15,6 +16,7 @@
 <div class="top-bar">
     <button id="upload-btn"> Upload + </button>
     <h1> DJ Browsify</h1>
+    <button id='susresButton'> Click Me </button>
 </div>
 
 
@@ -38,17 +40,17 @@
 
   <div class="content-container">
 
-    <div class="master-control">
-      <input name="crossfade" type="range" min="0" max="1" step="0.01" value=".5">
+    <div id="master-controls">
+      <label for="crossfade">crossfade</label>
+      <input id="crossfade" name="crossfade" type="range" min="0" max="1" step="0.01" value=".5">
     </div>
 
   <div id="decks">
-      <div class="audio-container" id="deck-1">
-        <audio controls src="">Your browser does not support HTML5 audio tags. Try on Chrome</audio>
+      <div class="audio-container" id="deck-1" data-playing='false'>
       </div>
 
-      <div class="audio-container" id="deck-2">
-        <audio controls src="">Your browser does not support HTML5 audio tags. Try on Chrome</audio>
+      <div class="audio-container" id="deck-2" data-playing='false'>
+        <button class="play" disabled>play</button>
       </div>
   </div>
 
