@@ -33,11 +33,6 @@ class Deck {
     this.gainNode.gain.value = value
   }
 
-  resetSample() {
-    this.sampleNode = audioCtx.createBufferSource()
-    this.sampleNode.buffer = this.buffer
-    this.sampleNode.connect(this.gainNode)
-  }
 
 
   togglePlay() {
@@ -93,7 +88,7 @@ class Deck {
     let value = (1.116123 ** input).toFixed(2)
     this.domEl.querySelector(".playback p").innerHTML = `${Math.floor(value*100)}%`
     //magic number is constant to assure smooth playback transition
-    this.sampleNode.playbackRate.value = value
+    this.wavesurfer.setPlaybackRate(value)
   }
 
 static crossfade(deck1, deck2, input) {
