@@ -17,8 +17,23 @@ class Deck {
     this.wavesurfer = WaveSurfer.create({
       container: this.domEl.querySelector('.waveform'),
       waveColor: '#ffff00',
-      progressColor: '#00ffff'
+      progressColor: '#00ffff',
+      plugins: [
+        WaveSurfer.cursor.create({
+            showTime: true,
+            opacity: 1,
+            customShowTimeStyle: {
+                'background-color': '#000',
+                color: '#fff',
+                padding: '2px',
+                'font-size': '10px'
+            }
+        })
+    ]
     })
+
+
+
     this.addEventListeners()
 
 
@@ -102,7 +117,7 @@ class Deck {
         <div class='playback'>
           <p> 100% </p>
           <input type="range" min="0" max="20" value="10"step=".05">
-          <button class='playback-btn'> + </button> 
+          <button class='playback-btn'> + </button>
           <button class='playback-btn'> - </button>
         </div>
         <div class='EQ'>
@@ -114,7 +129,7 @@ class Deck {
     <div class='waveform'></div>
 
     `
-  
+
     let deck = this
     return this.domEl
   }
@@ -122,7 +137,10 @@ class Deck {
   addEventListeners() {
     let deck = this
     this.domEl.querySelector('.play').addEventListener('click', deck.togglePlay.bind(this))
+
+    // wavesurfer eventlisteners
     this.wavesurfer.on('ready', this.enable.bind(this))
+
 
     let playbackSlider = deck.domEl.querySelector(".playback input")
     playbackSlider.addEventListener("input", event => deck.updatePlayback(event.target.value))
@@ -151,7 +169,7 @@ class Deck {
       this.midNode.gain.value = event.target.value
     }
     else if (event.target.classList.contains('high')) {
-      
+
       this.highNode.gain.value = event.target.value
     }
   }
