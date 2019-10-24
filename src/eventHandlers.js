@@ -54,18 +54,17 @@ let toggleUploadForm = (event => {
 })
 
 let loadDeck = (event) => {
+  console.log(event.target)
     if (event.target.classList.contains('deck-1-btn')) {
       console.log('deck 1 clicked')
         let songLi = event.target.parentNode.parentNode
-        let songPath = songLi.dataset.url
-        deck1.load(songPath)
+        deck1.load(songLi)
         // deck1.enable()
     }
     if (event.target.classList.contains('deck-2-btn')) {
       console.log('deck 2 clicked')
       let songLi = event.target.parentNode.parentNode
-      let songPath = songLi.dataset.url
-      deck2.load(songPath)
+      deck2.load(songLi)
       // deck2.enable()
     }
 }

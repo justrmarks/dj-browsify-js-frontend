@@ -24,6 +24,9 @@ class Song {
       <div class="deck-2-btn load-button" > <p> + D2 </p> </div>
     </div>
     `
+
+    let dataInfo = `${this.name} - ${this.artist} - ${this.genre}`
+    li.setAttribute('data-info', dataInfo )
     li.setAttribute('data-url', this.url)
     return li
   }
