@@ -19,9 +19,6 @@ body {
 
 /********* Top bar **************/
 
-#upload-btn {
-  display: inline;
-}
 
 h1 {
   display: inline;
@@ -34,17 +31,45 @@ h1 {
   display: flex;
   align-items: center;
   border: 3px solid grey;
-  justify-content: center;
+  justify-content: space-between;
   background-color: #00ECFF;
 }
 
+#upload-btn {
+  vertical-align: top;
+  display: inline-block;
+  text-align: center;
+  margin-left: 2%;
+}
 
 .far {
   color: #EB17EB;
+  display: block;
+}
+
+.my-text {
+  color: #EB17EB;
+  font-family: 'Roboto Mono', monospace;
+  display: block;
+}
+
+#record-btn {
+  vertical-align: top;
+  display: inline-block;
+  text-align: center;
+  margin-right: 2%;
 }
 
 .fas {
   color: red;
+  display: block;
+  padding: 10px;
+}
+
+.my-text-record {
+  color: red;
+  font-family: 'Roboto Mono', monospace;
+  display: block;
 }
 
 
@@ -164,17 +189,26 @@ h1 {
   border: 2px solid grey;
   background-color: whitesmoke;
   font-family: 'Roboto Mono', monospace;
+  font-size: 1.25em;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 #crossfade {
   transform: rotate(-90deg);
   width: 70%;
   height: 50%;
-
-
 }
 
-
+.fx {
+  border-top: 2px solid grey;
+  height: 50%;
+  width: 100%; 
+  margin: 0;
+  padding: 0;
+  text-align: center;
+}
 
 /****************** Songs list******************/
 

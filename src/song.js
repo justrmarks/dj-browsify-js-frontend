@@ -4,7 +4,6 @@ class Song {
 
 
   constructor(songData) {
-    console.log(songData)
     this.name = songData.name
     this.artist = songData.artist
     this.url = songData.path
@@ -25,7 +24,6 @@ class Song {
       <div class="deck-2-btn load-button" > <p> + D2 </p> </div>
     </div>
     `
-
     li.setAttribute('data-url', this.url)
     return li
   }

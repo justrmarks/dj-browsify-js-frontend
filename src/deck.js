@@ -85,7 +85,7 @@ class Deck {
     this.domEl.innerHTML = `
     <div class='controls'>
         <div class='info-bar'>
-        song name - song artist - song genre
+        <p> text </p>
         </div>
         <button class="play" disabled>play</button>
 
@@ -99,7 +99,7 @@ class Deck {
     <div class='waveform'></div>
 
     `
-
+  
     let deck = this
     this.addEventListeners()
 
