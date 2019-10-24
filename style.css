@@ -4,12 +4,13 @@ body {
   margin: 0;
 }
 
+
 .content-container {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
   border: 2px solid grey;
-  height: 80vh;
+  height: 85vmin;
 }
 
 .container * {
@@ -28,9 +29,12 @@ h1 {
   margin: 15px;
 }
 
+
+
 .top-bar {
   display: flex;
   align-items: center;
+  height: 15vmin;
   border: 3px solid grey;
   justify-content: space-between;
   background-color: #00ECFF;
@@ -252,6 +256,14 @@ h1 {
   margin: 0;
   padding: 0;
   text-align: center;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+}
+
+.fx * {
+  display: block;
+  margin: 20px;
 }
 
 /****************** Songs list******************/
@@ -298,12 +310,32 @@ h1 {
   pointer-events: none;
 }
 
+.load-button:hover {
+  color: #00ECFF;
+}
+
 .deck-1-btn {
    background-color: #EB17EB;
 }
 
 .deck-2-btn {
   background-color: #FFFF00;
+}
+
+.delete-btn {
+  width: 40%;
+  height: 20px;
+  background-color: rgb(255, 48, 76);
+  text-align: center;
+  font-family: 'Audiowide';
+  font-weight: bolder;
+  border-top-left-radius: 15%;
+  border-top-right-radius: 15%;
+}
+
+.delete-btn:hover {
+  background-color: rgb(255, 104, 132);
+  color: white;
 }
 
 

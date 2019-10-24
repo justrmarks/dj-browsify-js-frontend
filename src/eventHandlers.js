@@ -48,10 +48,20 @@ let progressBar = event.target.querySelector('progress')
 }
 
 let toggleUploadForm = (event => {
+  event.preventDefault()
   console.log("toggle")
   modal.classList.toggle('hidden')
 
 })
+let handleEffect = (event) => {
+  let effectForm = document.querySelector(".FX form")
+
+  if (effectForm.type == 'Pan') {
+    deck1.effectNode = StereoPannerNode()
+  }
+  deck1
+  deck2
+}
 
 let loadDeck = (event) => {
   console.log(event.target)

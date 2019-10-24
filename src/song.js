@@ -8,6 +8,7 @@ class Song {
     this.artist = songData.artist
     this.url = songData.path
     this.genre = songData.genre
+    this.id = songData.id
   }
 
   renderLi() {
@@ -17,6 +18,7 @@ class Song {
       <p> ${this.name}</p>
       <p> Artist - ${this.artist} </p>
       <p> Genre: ${this.genre} </p>
+      <div class='delete-btn'> X </div>
     </div>
 
     <div class='load-buttons'>
@@ -28,6 +30,9 @@ class Song {
     let dataInfo = `${this.name} - ${this.artist} - ${this.genre}`
     li.setAttribute('data-info', dataInfo )
     li.setAttribute('data-url', this.url)
+    li.setAttribute('data-id', this.id)
+
+    li
     return li
   }
 

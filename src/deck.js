@@ -13,7 +13,9 @@ class Deck {
 
   constructor(div) {
     this.domEl = div
+    this.effectForm = undefined
     this.songInfo = ''
+    this.effectNode = undefined
     this.render()
     this.wavesurfer = WaveSurfer.create({
       container: this.domEl.querySelector('.waveform'),
@@ -66,7 +68,7 @@ class Deck {
     this.highNode.type = 'highshelf';
     this.highNode.gain.value = 0;
     this.highNode.Q.value = 1;
-    this.highNode.frequency.value = 2000;
+    this.highNode.frequency.value = 16000;
     this.filters.push(this.highNode)
 
     // crossfade
@@ -113,7 +115,6 @@ class Deck {
   render() {
 
     this.domEl.innerHTML = `
-
     <div class='info-bar'>
       <p> ${this.songInfo} </p>
     </div>
@@ -141,6 +142,20 @@ class Deck {
 
     <div class='waveform'></div>
     `
+
+    let effects = document.querySelector(".fx")
+
+    this.effectForm = document.createElement('form')
+    this.effectForm.innerHTML = `
+      <form>
+        <select name="type">
+          <option value="r">Reverb</option>
+          <option value="p">Pan</option>
+          <option value="d">Distortion</option>
+        </select>
+        <input name="amount" type="range" min="-1" max="1" step="0.05" />`
+
+    effects.appendChild(this.effectForm)
 
     let deck = this
     return this.domEl
@@ -176,6 +191,21 @@ class Deck {
 
     let eq = this.domEl.querySelector('.EQ')
     eq.addEventListener('input', this.updateEQ.bind(this))
+
+    // fx panel
+    this.effectForm.type.addEventListener('change', event=> {
+      console.log(event.target)
+
+      if (event.target.value == "p") {
+        this.effectNode = this.wavesurfer.backend.ac.createStereoPanner();
+        console.log(this.effectNode)
+        this.filters.push(this.effectNode);
+        this.wavesurfer.backend.setFilters(this.filters);
+      }
+    })
+    this.effectForm.amount.addEventListener("input", event=> {
+      this.effectNode.pan.value = event.target.value
+    })
 
   }
 
