@@ -15,11 +15,49 @@ class Deck {
     this.domEl = div
     this.render()
     this.wavesurfer = WaveSurfer.create({
-      container: this.domEl.querySelector('.waveform')
+      container: this.domEl.querySelector('.waveform'),
+      waveColor: '#ffff00',
+      progressColor: '#00ffff'
     })
     this.addEventListeners()
+
+
+//filters
+  this.filters = []
+
+    ///// EQ
+
+    // low
+    this.lowNode = this.wavesurfer.backend.ac.createBiquadFilter();
+    this.lowNode.type = 'lowshelf';
+    this.lowNode.gain.value = 0;
+    this.lowNode.Q.value = 1;
+    this.lowNode.frequency.value = 100;
+    this.filters.push(this.lowNode)
+
+    // mid
+
+    this.midNode = this.wavesurfer.backend.ac.createBiquadFilter();
+    this.midNode.type = 'peaking';
+    this.midNode.gain.value = 0;
+    this.midNode.Q.value = 1;
+    this.midNode.frequency.value = 2000;
+    this.filters.push(this.midNode)
+
+    //high
+    this.highNode = this.wavesurfer.backend.ac.createBiquadFilter();
+    this.highNode.type = 'highshelf';
+    this.highNode.gain.value = 0;
+    this.highNode.Q.value = 1;
+    this.highNode.frequency.value = 2000;
+    this.filters.push(this.highNode)
+
+    // crossfade
     this.gainNode = this.wavesurfer.backend.ac.createGain()
-    this.wavesurfer.backend.setFilter(this.gainNode);
+    this.filters.push(this.gainNode)
+
+
+    this.wavesurfer.backend.setFilters(this.filters)
 
   }
 
@@ -64,6 +102,11 @@ class Deck {
           <button> + </button>
           <button> - </button>
         </div>
+        <div class='EQ'>
+          <input class='low' type='range' min="-40" max="40">
+          <input class='mid' type='range' min="-40" max="40">
+          <input class='high' type='range' min="-40" max="40">
+        </div>
     </div>
     <div class='waveform'></div>
 
@@ -76,11 +119,14 @@ class Deck {
   addEventListeners() {
     let deck = this
     this.domEl.querySelector('.play').addEventListener('click', deck.togglePlay.bind(this))
-
     this.wavesurfer.on('ready', this.enable.bind(this))
 
     let playbackSlider = deck.domEl.querySelector(".playback input")
     playbackSlider.addEventListener("input", event => deck.updatePlayback(event.target.value))
+
+    let eq = this.domEl.querySelector('.EQ')
+    eq.addEventListener('input', this.updateEQ.bind(this))
+
   }
 
   updatePlayback(factor) {
@@ -89,6 +135,22 @@ class Deck {
     this.domEl.querySelector(".playback p").innerHTML = `${Math.floor(value*100)}%`
     //magic number is constant to assure smooth playback transition
     this.wavesurfer.setPlaybackRate(value)
+  }
+
+  updateEQ(event) {
+
+    if (event.target.classList.contains('low')) {
+
+      this.lowNode.gain.value = event.target.value
+    }
+    else if (event.target.classList.contains('mid')) {
+
+      this.midNode.gain.value = event.target.value
+    }
+    else if (event.target.classList.contains('high')) {
+      
+      this.highNode.gain.value = event.target.value
+    }
   }
 
 static crossfade(deck1, deck2, input) {

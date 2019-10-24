@@ -54,7 +54,6 @@ let toggleUploadForm = (event => {
 })
 
 let loadDeck = (event) => {
-  console.log(event.target)
     if (event.target.classList.contains('deck-1-btn')) {
       console.log('deck 1 clicked')
         let songLi = event.target.parentNode.parentNode
