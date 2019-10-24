@@ -1,5 +1,4 @@
 const SONGS_URL = 'http://localhost:3001/songs'
-const audioCtx = new AudioContext()
 
 // top bar
 
