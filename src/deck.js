@@ -94,13 +94,16 @@ class Deck {
 
     this.domEl.innerHTML = `
     <div class='controls'>
+        <div class='info-bar'>
+        <p> text </p>
+        </div>
         <button class="play" disabled>play</button>
 
         <div class='playback'>
           <p> 100% </p>
           <input type="range" min="0" max="20" value="10"step=".05">
-          <button> + </button>
-          <button> - </button>
+          <button class='playback-btn'> + </button> 
+          <button class='playback-btn'> - </button>
         </div>
         <div class='EQ'>
           <input class='low' type='range' min="-40" max="40">
@@ -111,7 +114,7 @@ class Deck {
     <div class='waveform'></div>
 
     `
-
+  
     let deck = this
     return this.domEl
   }
