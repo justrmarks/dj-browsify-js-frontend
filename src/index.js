@@ -8,7 +8,7 @@ const SONGS_URL = 'http://localhost:3001/songs'
 
 let songsList = document.getElementById('songs-list')
 Song.getUserSongs(songsList)
-songsList.addEventListener('click', loadDeck)
+// songsList.addEventListener('click', loadDeck)
 
 
 //decks

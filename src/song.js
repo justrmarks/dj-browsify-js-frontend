@@ -4,6 +4,7 @@ class Song {
 
 
   constructor(songData) {
+    this.domEl = undefined
     this.name = songData.name
     this.artist = songData.artist
     this.url = songData.path
@@ -32,8 +33,19 @@ class Song {
     li.setAttribute('data-url', this.url)
     li.setAttribute('data-id', this.id)
 
-    li
+    li.querySelector(".delete-btn").addEventListener('click', this.delete.bind(this),true)
+    li.querySelector('.load-buttons').addEventListener('click', loadDeck)
+    this.domEl = li
     return li
+  }
+
+  async delete() {
+    let resp = await fetch(`${SONGS_URL}/${this.id}`,{ method: 'DELETE'})
+    let data = await resp.json()
+
+    if (data.id == this.id) {
+      this.domEl.remove()
+    }
   }
 
   static async getUserSongs(listEl) {

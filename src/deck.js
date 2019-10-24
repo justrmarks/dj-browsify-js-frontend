@@ -21,6 +21,7 @@ class Deck {
       container: this.domEl.querySelector('.waveform'),
       waveColor: '#ffff00',
       progressColor: '#00ffff',
+      responsive: true,
       height: 100,
       plugins: [
         WaveSurfer.cursor.create({
