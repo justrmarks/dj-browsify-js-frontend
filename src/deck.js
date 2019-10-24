@@ -19,6 +19,7 @@ class Deck {
       container: this.domEl.querySelector('.waveform'),
       waveColor: '#ffff00',
       progressColor: '#00ffff',
+      height: 100,
       plugins: [
         WaveSurfer.cursor.create({
             showTime: true,
@@ -132,9 +133,9 @@ class Deck {
 
       <div class='playback'>
         <p>100%</p>
-        <input type="range" min="0" max="20" value="10"step=".05">
-        <button class='playback-btn'> + </button> 
-        <button class='playback-btn'> - </button>
+        <input type="range" min="0" max="20" step=".05">
+        <button class='playback-btn tempoUp'> + </button>
+        <button class='playback-btn tempoDown'> - </button>
       </div>
     </div>
 
@@ -154,7 +155,24 @@ class Deck {
 
 
     let playbackSlider = deck.domEl.querySelector(".playback input")
-    playbackSlider.addEventListener("input", event => deck.updatePlayback(event.target.value))
+    playbackSlider.addEventListener("input", event => {
+      let input = event.target.value - 10
+      let value = (1.116123 ** input).toFixed(2)
+      deck.updatePlayback(value)})
+
+    let tempoUpButton = this.domEl.querySelector(".tempoUp")
+    tempoUpButton.addEventListener("click", event => {
+      let value = parseFloat(deck.wavesurfer.getPlaybackRate());
+      value +=.01
+      deck.updatePlayback(value)
+    })
+
+    let tempoDownButton = this.domEl.querySelector(".tempoDown")
+    tempoDownButton.addEventListener("click", event => {
+      let value = parseFloat(deck.wavesurfer.getPlaybackRate());
+      value -=.01
+      deck.updatePlayback(value)
+    })
 
     let eq = this.domEl.querySelector('.EQ')
     eq.addEventListener('input', this.updateEQ.bind(this))
@@ -162,11 +180,10 @@ class Deck {
   }
 
   updatePlayback(factor) {
-    let input = factor - 10
-    let value = (1.116123 ** input).toFixed(2)
-    this.domEl.querySelector(".playback p").innerHTML = `${Math.floor(value*100)}%`
+    this.domEl.querySelector(".playback p").innerHTML = `${Math.floor(factor*100)}%`
     //magic number is constant to assure smooth playback transition
-    this.wavesurfer.setPlaybackRate(value)
+    console.log(factor)
+    this.wavesurfer.setPlaybackRate(factor)
   }
 
   updateEQ(event) {
