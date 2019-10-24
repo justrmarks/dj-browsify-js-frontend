@@ -32,8 +32,8 @@
 
 
   <div class="hidden" id="modal">
-    <button id="hide-btn"> X </button>
       <form id="upload-form">
+          <p><button id="hide-btn"> X </button></p>
 
 
           <label for="name">Song Name: </label>
@@ -42,10 +42,11 @@
           <input name="artist" type="text"/>
           <label for="genre">Genre:</label>
           <input name="genre" type="text"/>
-          <input name="file" type="file" accept="audio/*"/>
-          <input type="submit" value="upload song"/>
-          <progress max="100" value="0"></progress>
-
+          <div class='file-content'>
+            <input name="file" type="file" accept="audio/*"/>
+            <input class='file-submit' type="submit" value="upload song"/>
+            <progress class='progress-bar' max="100" value="0"></progress>
+          </div>
       </form>
     </div>
 

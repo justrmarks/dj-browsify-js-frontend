@@ -13,6 +13,7 @@ class Deck {
 
   constructor(div) {
     this.domEl = div
+    this.songInfo = ''
     this.render()
     this.wavesurfer = WaveSurfer.create({
       container: this.domEl.querySelector('.waveform'),
@@ -76,11 +77,14 @@ class Deck {
 
   }
 
-  async load(url) {
+  load(songLi) {
     let deck = this
     this.disable()
-    this.wavesurfer.load(url)
-      }
+    let songPath = songLi.dataset.url
+    this.songInfo = songLi.dataset.info
+    this.domEl.querySelector('.info-bar').innerHTML = this.songInfo
+    this.wavesurfer.load(songPath)
+    }
 
   setGain(value) {
     this.gainNode.gain.value = value
@@ -108,26 +112,33 @@ class Deck {
   render() {
 
     this.domEl.innerHTML = `
-    <div class='controls'>
-        <div class='info-bar'>
-        <p> text </p>
-        </div>
-        <button class="play" disabled>play</button>
 
-        <div class='playback'>
-          <p> 100% </p>
-          <input type="range" min="0" max="20" value="10"step=".05">
-          <button class='playback-btn'> + </button>
-          <button class='playback-btn'> - </button>
-        </div>
-        <div class='EQ'>
-          <input class='low' type='range' min="-40" max="40">
-          <input class='mid' type='range' min="-40" max="40">
-          <input class='high' type='range' min="-40" max="40">
-        </div>
+    <div class='info-bar'>
+      <p> ${this.songInfo} </p>
     </div>
-    <div class='waveform'></div>
 
+    <div class='controls'>
+
+      <button class="play" disabled>play</button>
+
+      <div class='EQ'>
+        <input class='low' type='range' min="-40" max="40">
+        <label for='low'> low </label>
+        <input class='mid' type='range' min="-40" max="40">
+        <label for='mid'> mid </label>
+        <input class='high' type='range' min="-40" max="40">
+        <label for='high'> high </label>
+      </div>
+
+      <div class='playback'>
+        <p>100%</p>
+        <input type="range" min="0" max="20" value="10"step=".05">
+        <button class='playback-btn'> + </button> 
+        <button class='playback-btn'> - </button>
+      </div>
+    </div>
+
+    <div class='waveform'></div>
     `
 
     let deck = this
