@@ -251,7 +251,7 @@ class Deck {
     event.preventDefault()
     this.loopIn = this.wavesurfer.getCurrentTime()
     event.target.style.backgroundColor = "green"
-    event.target.textContent = this.loopIn
+    event.target.textContent = this.loopIn.toFixed(2)
   }
 
   setLoopOut(event) {
@@ -259,7 +259,7 @@ class Deck {
     if (this.wavesurfer.getCurrentTime() > this.loopIn) {
       this.loopOut = this.wavesurfer.getCurrentTime()
       event.target.style.backgroundColor = "green"
-      event.target.textContent = this.loopOut
+      event.target.textContent = this.loopOut.toFixed(2)
       event.target.parentNode.parentNode.loopToggle.click()
     }
     else {
