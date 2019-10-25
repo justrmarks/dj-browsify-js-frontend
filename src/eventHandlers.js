@@ -45,6 +45,7 @@ let progressBar = event.target.querySelector('progress')
   request.open('post', SONGS_URL);
   request.send(data);
 
+  event.target.reset()
 }
 
 let toggleUploadForm = (event => {

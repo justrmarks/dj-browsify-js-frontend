@@ -99,25 +99,30 @@ h1 {
   background-color: #ffffff;
   border-radius: 7%;
   width: 50%;
-  padding-left: 8%;
+  height: 90%;
 }
 
 #modal input[type='text'] {
- padding: 2%;
  width: 70%;
  border-radius: 5px;
  font-size: 1.2rem;
  color: grey;
  font-family: 'Roboto Mono', monospace;
+ margin-left: 10%;
 }
 
-#hide_button {
-  float: left;
+#modal label {
+  margin-left: 10%;
+}
+
+#modal p {
+  margin-left: 5%;
 }
 
 #modal input {
   display: block;
-  margin: 2rem;
+  margin: 1.5rem;
+
 }
 
 .hidden#modal {
@@ -128,7 +133,6 @@ h1 {
   display: flex;
   flex-direction: column;
   align-items: center;
-  font-size: 1.5em;
   font-family: 'Roboto Mono', monospace;
 }
 
