@@ -33,7 +33,8 @@ class Deck {
                 padding: '2px',
                 'font-size': '10px'
             }
-        })
+        }),
+        WaveSurfer.regions.create()
     ]
     })
 
@@ -154,7 +155,14 @@ class Deck {
           <option value="p">Pan</option>
           <option value="d">Distortion</option>
         </select>
-        <input name="amount" type="range" min="-1" max="1" step="0.05" />`
+        <input name="amount" type="range" min="-1" max="1" step="0.05" />
+        <div class="loop">
+          <button name="loopToggle" class="loopToggle">Loop </button>
+          <button name="loopIn" class="loopIn"> Loop In </button>
+          <button name="loopOut" class="loopOut"> Loop Out </button>
+        </div>
+      </form>
+        `
 
     effects.appendChild(this.effectForm)
 
@@ -169,7 +177,7 @@ class Deck {
     // wavesurfer eventlisteners
     this.wavesurfer.on('ready', this.enable.bind(this))
 
-
+    //
     let playbackSlider = deck.domEl.querySelector(".playback input")
     playbackSlider.addEventListener("input", event => {
       let input = event.target.value - 10
@@ -208,6 +216,12 @@ class Deck {
       this.effectNode.pan.value = event.target.value
     })
 
+    //looping
+
+    this.effectForm.loopToggle.addEventListener('click', this.loopToggle.bind(this))
+    this.effectForm.loopIn.addEventListener('click', this.setLoopIn.bind(this))
+    this.effectForm.loopOut.addEventListener('click', this.setLoopOut.bind(this))
+
   }
 
   updatePlayback(factor) {
@@ -230,6 +244,46 @@ class Deck {
     else if (event.target.classList.contains('high')) {
 
       this.highNode.gain.value = event.target.value
+    }
+  }
+
+  setLoopIn(event) {
+    event.preventDefault()
+    this.loopIn = this.wavesurfer.getCurrentTime()
+    event.target.style.backgroundColor = "green"
+    event.target.textContent = this.loopIn.toFixed(2)
+  }
+
+  setLoopOut(event) {
+    event.preventDefault()
+    if (this.wavesurfer.getCurrentTime() > this.loopIn) {
+      this.loopOut = this.wavesurfer.getCurrentTime()
+      event.target.style.backgroundColor = "green"
+      event.target.textContent = this.loopOut.toFixed(2)
+      event.target.parentNode.parentNode.loopToggle.click()
+    }
+    else {
+      event.target.style.backgroundColor = "red"
+    }
+  }
+
+  loopToggle(event) {
+    event.preventDefault()
+    if (this.looping) {
+      this.wavesurfer.clearRegions()
+      this.wavesurfer.play(this.currentTime)
+      event.target.style.backgroundColor = "grey"
+      this.looping = false
+    }
+    else if (this.loopIn < this.loopOut) {
+      this.currentTime = this.wavesurfer.getCurrentTime()
+      this.wavesurfer.addRegion({
+        start: this.loopIn,
+        end: this.loopOut,
+        loop: true,
+        color: 'rgba(255,0,255,0.4)'
+      }).play()
+      this.looping = true
     }
   }
 
